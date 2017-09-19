@@ -53,18 +53,18 @@ def get_lat_long(dataframe):
 def generate_map(lats, longs, map_name):
 	my_map = gmplot.GoogleMapPlotter(41.8486592, -87.707648, 11)
 	my_map.heatmap(lats, longs, radius=16)
-	my_map.draw(f'/Users/Dave/Desktop/PythonProjects/CrimeHeatMap/html_files/{map_name}.html')
+	my_map.draw(f'html_files/{map_name}.html')
 	print('html file saved')
 	return map_name
 
 
 def open_map(map_name, browser):
-	url = f'file:///Users/Dave/Desktop/PythonProjects/CrimeHeatMap/html_files/{map_name}.html'
+	url = f'html_files/{map_name}.html'
 	browser.get(url)
 	file_loaded = '//*[@id="map_canvas"]/div/div/div[10]/div[2]/div[1]'
 	WebDriverWait(browser, 10).until(lambda driver: driver.find_element_by_xpath(file_loaded))
 	time.sleep(5)
-	browser.save_screenshot(f'/Users/Dave/Desktop/PythonProjects/CrimeHeatMap/png_images/{map_name}.png')
+	browser.save_screenshot(f'png_images/{map_name}.png')
 
 
 def run(start_year, end_year, csv_file_name):
@@ -85,6 +85,7 @@ year_range = []
 for i in range(2000, 2017, 4):
 	my_tup = (i, i + 4)
 	year_range.append(my_tup)
+
 for year in year_range:
 	run(year[0], year[1], 'Crime.csv')
 	print(f'{year[0]} to {year[1]} has been processed')
