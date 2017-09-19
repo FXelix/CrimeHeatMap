@@ -87,7 +87,7 @@ def run(start_year, end_year, csv_file_name):
 
 
 year_range = []
-for i in range(2010, 2016, 1):
+for i in range(2000, 2017, 1):
 	my_tup = (i, i + 1)
 	year_range.append(my_tup)
 
