@@ -7,6 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
 
+
 def create_data_frame(csv_file_name, years):
 	# creates crime_locations.csv with data for specific year to increase performance
 	with open(csv_file_name, 'r') as file_in, open('crime_locations.csv', 'w') as  file_out:
@@ -70,7 +71,8 @@ def run(start_year, end_year, csv_file_name):
 	years = [str(year) for year in range(start_year, end_year)]
 	df = create_data_frame(csv_file_name, years)
 	names = []
-	browser = webdriver.Chrome()
+	browser = webdriver.PhantomJS()
+	browser.set_window_size(1024, 768)
 	# iterates through months in years
 	for year in range(start_year, end_year):
 		for month in range(1, 13):
@@ -94,3 +96,4 @@ for i in range(2000, 2017, 1):
 for year in year_range:
 	run(year[0], year[1], 'Crime.csv')
 	print(f'{year[0]} to {year[1]} has been processed')
+
