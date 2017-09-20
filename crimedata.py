@@ -90,8 +90,8 @@ def run(start_year, end_year, csv_file_name):
 
 year_range = []
 for i in range(2000, 2017, 1):
-	my_tup = (i, i + 1)
-	year_range.append(my_tup)
+	year_group = (i, i + 1)
+	year_range.append(year_group)
 
 for year in year_range:
 	run(year[0], year[1], 'Crime.csv')
